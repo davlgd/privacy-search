@@ -40,7 +40,7 @@
             const keywords = askedURL.searchParams.get("q");
             
             // If the incognito mode is not active and non privacy aware search engine URL is detected
-            if (/bing.|google.|yahoo./.test(askedURL.hostname) && !IsIncognitoActive)
+            if (/bing.|google.|yahoo./.test(askedURL.hostname) && !IsIncognitoActive && !/youtube.com/.test(request.initiator))
             {   
                 const destinationUrl = (keywords) ? `${privacySearchEngineUrl}?q=${keywords}` : privacySearchEngineUrl;
                 return { redirectUrl: destinationUrl };
