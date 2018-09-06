@@ -1,0 +1,11 @@
+{
+    "extDescription": {
+        "message": "This extension force your browser to use a privacy-aware search engine"
+    },
+    "searchEngineToSelectText" : {
+        "message": "Which search engine do you want to use by default ?"
+    },
+    "optionsSaved" : {
+        "message": "Options saved"
+    }
+}

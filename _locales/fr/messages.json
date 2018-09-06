@@ -1,0 +1,11 @@
+{
+    "extDescription": {
+        "message": "Une extension pour forcer l'utilisation d'un moteur de recherche respectueux de la vie privée dans votre navigateur"
+    },
+    "searchEngineToSelectText" : {
+        "message": "Quel moteur de recherche voulez-vous utiliser par défaut ?"
+    },
+    "optionsSaved" : {
+        "message": "Options enregistrées"
+    }
+}
