@@ -5,9 +5,9 @@
     
     let searchEnginesList = document.getElementById("searchEngine");
     let questionLabel = document.getElementById("question");
-    questionLabel.innerText = chrome.i18n.getMessage("searchEngineToSelectText");
+    questionLabel.innerText = browser.i18n.getMessage("searchEngineToSelectText");
 
-    chrome.storage.local.get(["searchEnginesList"], function(items){
+    browser.storage.local.get(["searchEnginesList"], function(items){
         items.searchEnginesList.forEach(element => {
             let searchEnginesOption = document.createElement("option");
             searchEnginesOption.value = element.url;
@@ -19,11 +19,11 @@
     function saveOptions() {
         let searchEngine = searchEnginesList.selectedIndex;
         
-        chrome.storage.sync.set({
+        browser.storage.sync.set({
             selectedSearchEngine: searchEngine,
         }, function() {
             let status = document.getElementById("status");
-            status.textContent = chrome.i18n.getMessage("optionsSaved");
+            status.textContent = browser.i18n.getMessage("optionsSaved");
             setTimeout(function() {
                 status.textContent = "";
             }, 2000);
@@ -31,7 +31,7 @@
     }
 
     function restoreOptions() {
-        chrome.storage.sync.get(["selectedSearchEngine"], function(items) {
+        browser.storage.sync.get(["selectedSearchEngine"], function(items) {
             if (items.selectedSearchEngine) 
                 searchEnginesList.selectedIndex = items.selectedSearchEngine;
             else 

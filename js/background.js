@@ -2,9 +2,9 @@
 (function() {
     
     // After install, we launch option page to allow user to select its favorite search engine
-    chrome.runtime.onInstalled.addListener(function (infos) {
+    browser.runtime.onInstalled.addListener(function (infos) {
         if (infos.reason == "install")
-            chrome.runtime.openOptionsPage();
+            browser.runtime.openOptionsPage();
     });
     
     // We define the list of privacy aware search engines and store it locally
@@ -17,20 +17,20 @@
         { name: "Qwant Lite", url: "lite.qwant.com" },
         { name: "Startpage", url: "startpage.com/do/asearch" }
     ];
-    chrome.storage.local.set({searchEnginesList: searchEngines});
+    browser.storage.local.set({searchEnginesList: searchEngines});
 
     // We check if incognito mode is activated for the current window
     let IsIncognitoActive = false;
-    chrome.windows.onFocusChanged.addListener(function(id){
-        chrome.windows.getCurrent(function (properties) {
+    browser.windows.onFocusChanged.addListener(function(id){
+        browser.windows.getCurrent(function (properties) {
             IsIncognitoActive = properties.incognito;
         });
     });
 
     // We get selected search engine from synced storage
-    chrome.storage.sync.get(["selectedSearchEngine"], function(items){
+    browser.storage.sync.get(["selectedSearchEngine"], function(items){
 
-        chrome.webRequest.onBeforeRequest.addListener(function (request) {
+        browser.webRequest.onBeforeRequest.addListener(function (request) {
 
             // If the privacy search engine URL is not defined, we use Qwant
             if (typeof items.selectedSearchEngine === "undefined" || typeof searchEngines[items.selectedSearchEngine].url === "undefined") items.selectedSearchEngine = 3;
@@ -49,7 +49,7 @@
         { urls: ["<all_urls>"] }, ["blocking"]);
         
         // If the user change the selected privacy search engine, we use the new value
-        chrome.storage.onChanged.addListener(function(changes) {
+        browser.storage.onChanged.addListener(function(changes) {
             if (changes["selectedSearchEngine"])
                 items.selectedSearchEngine = changes["selectedSearchEngine"].newValue;
         });

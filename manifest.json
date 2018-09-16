@@ -2,7 +2,8 @@
     "manifest_version": 2,
     "name": "Privacy Search",
     "description": "__MSG_extDescription__",
-    "version": "0.1.0.4",
+    "author":"David Legrand",
+    "version": "0.1.0.5",
     "default_locale": "en",
     "icons": {
         "16": "ico/privacy-16.png",
@@ -20,7 +21,8 @@
         "<all_urls>"
     ],
     "background": {
-        "scripts": ["js/background.js"]
+        "scripts": ["js/background.js"],
+        "persistent":true
     },
     "options_ui": {
         "page": "html/options.html",
